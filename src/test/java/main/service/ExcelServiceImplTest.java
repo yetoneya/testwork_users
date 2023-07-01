@@ -3,8 +3,6 @@ package main.service;
 import main.domain.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class ExcelServiceImplTest {
             user = user.setUser_id(i)
                     .setUser_f_name("f_name" + i)
                     .setUser_l_name("l_name" + i)
-                    .setUser_b_date(LocalDate.now())
+                    .setUser_b_date("1.9")
                     .setUser_city("Moscow")
                     .setUser_contacts("email");
             users.add(user);

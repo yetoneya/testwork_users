@@ -4,9 +4,8 @@ import main.domain.User;
 
 import java.util.List;
 
-public interface UserLoader {
+public interface UserLoaderDB {
 
-    void getUsers();
 
     List<User> getUsersFromDB();
 

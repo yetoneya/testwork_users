@@ -2,6 +2,9 @@ package main.service;
 
 import main.base.ExcelService;
 import main.domain.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.util.Strings;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -16,6 +19,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,9 +27,20 @@ import java.util.List;
 @PropertySource("classpath:application.properties")
 public class ExcelServiceImpl implements ExcelService {
 
+    private static final Logger logger = LogManager.getLogger(ExcelServiceImpl.class);
+
+    @Value("${exel.directory}")
+    private String directory = "exel";
+
+    @Value("${pool.size}")
+    private int poolSize = 4;
 
     @Override
     public String createExel(List<User> users) {
+        if (users.isEmpty()) {
+            logger.warn("Не найдено данных для создания файла exel");
+            return Strings.EMPTY;
+        }
         int columnCounter = 0;
         try (Workbook workbook = new XSSFWorkbook()) {
             Sheet sheet = workbook.createSheet("vk-users");
@@ -60,17 +75,23 @@ public class ExcelServiceImpl implements ExcelService {
                 cell.setCellValue(user.getUser_contacts());
                 columnCounter = 0;
             }
-
-
             return createExcelFile(workbook);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            StackTraceElement ste = e.getStackTrace()[0];
+            String message = MessageFormat.format("Ошибка {0} в классе {1} методе {2} строке {3}.", e.getMessage(), ste.getClassName(), ste.getMethodName(), ste.getLineNumber());
+            if (e.getCause() != null) message = message.concat(" Причина: ").concat(e.getCause().getMessage());
+            logger.error(message);
+            return Strings.EMPTY;
         }
     }
 
     private String createExcelFile(Workbook workbook) throws IOException {
+        Path path = Paths.get(directory);
+        if (Files.notExists(path)) {
+            Files.createDirectories(path);
+        }
         String fileName = "vk_user_".concat(String.valueOf(LocalDate.now()).replaceAll("-", "_")).concat(".xlsx");
-        Path full = Paths.get(".", fileName);
+        Path full = path.resolve(fileName);
         Files.deleteIfExists(full);
         Files.createFile(full);
         try (FileOutputStream outputStream = new FileOutputStream(full.toFile())) {
@@ -78,4 +99,5 @@ public class ExcelServiceImpl implements ExcelService {
         }
         return full.toString();
     }
+
 }

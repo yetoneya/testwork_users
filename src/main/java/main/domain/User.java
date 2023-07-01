@@ -9,7 +9,7 @@ public class User {
     private int user_id;
     private String user_f_name;
     private String user_l_name;
-    private LocalDate user_b_date;
+    private String user_b_date;
     private String user_city;
     private String user_contacts;
 
@@ -29,7 +29,7 @@ public class User {
         return user_l_name;
     }
 
-    public LocalDate getUser_b_date() {
+    public String getUser_b_date() {
         return user_b_date;
     }
 
@@ -61,7 +61,7 @@ public class User {
         return this;
     }
 
-    public User setUser_b_date(LocalDate user_b_date) {
+    public User setUser_b_date(String user_b_date) {
         this.user_b_date = user_b_date;
         return this;
     }
