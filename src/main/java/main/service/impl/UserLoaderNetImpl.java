@@ -1,4 +1,4 @@
-package main.service;
+package main.service.impl;
 
 import com.vk.api.sdk.client.TransportClient;
 import com.vk.api.sdk.client.VkApiClient;
@@ -10,7 +10,7 @@ import com.vk.api.sdk.objects.base.City;
 import com.vk.api.sdk.objects.users.Fields;
 import com.vk.api.sdk.objects.users.UserMin;
 import com.vk.api.sdk.objects.users.responses.GetResponse;
-import main.base.UserLoaderNet;
+import main.service.UserLoaderNet;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;

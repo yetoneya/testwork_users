@@ -1,4 +1,4 @@
-package main.base;
+package main.service;
 
 import main.domain.User;
 

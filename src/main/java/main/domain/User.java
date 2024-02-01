@@ -1,6 +1,5 @@
 package main.domain;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class User {
@@ -99,5 +98,8 @@ public class User {
                 ", user_city='" + user_city + '\'' +
                 ", user_contacts=" + user_contacts +
                 '}';
+    }
+
+    public static class UserLoaderJPServiceImpl {
     }
 }

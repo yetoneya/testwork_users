@@ -1,6 +1,6 @@
 package main;
 
-import main.base.UserFacade;
+import main.fasade.UserFacade;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
