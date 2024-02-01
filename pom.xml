@@ -19,13 +19,16 @@
         <com.vk.api.version>1.0.14</com.vk.api.version>
         <com.vk.api.sdk.version>1.0.14</com.vk.api.sdk.version>
         <com.vk.api.core.version>1.0.0-public</com.vk.api.core.version>
+        <hibernate.entitymanager.version>5.6.15.Final</hibernate.entitymanager.version>
+        <mockito.version>5.3.1</mockito.version>
+        <powermock.version>2.0.9</powermock.version>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.6.15.Final</version>
+            <version>${hibernate.entitymanager.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -79,6 +82,27 @@
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.powermock/powermock-api-mockito2 -->
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito2</artifactId>
+            <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>vk-users</finalName>
